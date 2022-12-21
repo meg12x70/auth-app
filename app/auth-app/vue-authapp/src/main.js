@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import router from '@/router/index';
 import App from './App';
+import store from './store/index';
 
 Vue.use(VueAxios, axios);
 Vue.use(BootstrapVue);
@@ -22,4 +23,5 @@ new Vue({
     render: h => h(App),
     router,
     axios,
+    store,
 }).$mount('#app');

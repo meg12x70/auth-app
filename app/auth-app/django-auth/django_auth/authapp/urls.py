@@ -6,9 +6,9 @@ from .views import *
 
 urlpatterns = [
     path('auth/', include('djoser.urls')),
-    path('auth/token/', obtain_auth_token, name='token_obtain_pair'),
+    path('auth/token/', obtain_auth_token, name='token'),
     # path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('appusers/<int:pk>', AppUserRetrieveView.as_view()),
+    path('appusers/<int:user>', AppUserRetrieveView.as_view()),
     path('appusers/update/<int:pk>', AppUserUpdateView.as_view()),
     path('appusers/all/', AppUserListView.as_view()),
     path('appusers/new/', CreateAppUserView.as_view()),

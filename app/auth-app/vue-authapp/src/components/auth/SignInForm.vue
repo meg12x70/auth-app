@@ -9,7 +9,7 @@
             </b-input>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mt-4">
             <label for="password">
                 Пароль:
             </label>
@@ -18,7 +18,7 @@
             </b-input>
         </div>
 
-        <b-button variant="primary" type="submit">
+        <b-button variant="primary" type="submit" class="mt-4">
             Войти
         </b-button>
 
@@ -32,11 +32,11 @@
     </b-form>
 </template>
 <script>
+import { mapActions } from 'vuex';
 import authRequest from '@/mixins/authRequest';
 
 export default {
     name: 'SignInForm',
-
     data() {
         return {
             form: {
@@ -45,10 +45,11 @@ export default {
             },
         };
     },
-
     mixins: [authRequest],
-
     methods: {
+        ...mapActions([
+            'fetchAuthUser',
+        ]),
         async login() {
             // логика авторизации
             try {
@@ -56,7 +57,10 @@ export default {
 
                 // авторизуем юзера
                 // eslint-disable-next-line
-                this.setLogined(response.token);
+                if (response) {
+                    this.setLogined(response.token);
+                    this.$router.push('/dashboard');
+                }
             } catch (error) {
                 /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
                 console.error('AN API ERROR:', error);
@@ -66,8 +70,8 @@ export default {
         setLogined(token) {
             // сохраняем токен
             // eslint-disable-next-line
-            console.log(token);
             localStorage.setItem('token', token);
+            this.fetchAuthUser();
         },
     },
 };
