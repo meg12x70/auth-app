@@ -26,7 +26,7 @@
         <div class="form-group required">
             <label class="control-label" for="accessLevel">Уровень доступа:</label>
             <b-select
-                v-model="form.accessLevel"
+                v-model="appUserData.access_level"
                 :options="accessLevelOptions"
                 type="accessLevel"
                 id="accessLevel"
@@ -62,7 +62,14 @@
             Введённые пароли не совпадают
         </p>
 
-        <b-button variant="primary" type="submit" :disabled="formValid">Регистрация</b-button>
+        <b-button
+            variant="primary"
+            type="submit"
+            :disabled="formValid"
+            class="mt-4"
+        >
+            Регистрация
+        </b-button>
 
         <p class="mt-2">
             <small class="text-muted">
@@ -101,6 +108,10 @@ export default {
             ],
 
             err: '',
+            appUserData: {
+                user: null,
+                access_level: null,
+            },
         };
     },
 
@@ -117,9 +128,6 @@ export default {
             repeatPassword: {
                 required,
                 sameAs: sameAs('password'),
-            },
-            accessLevel: {
-                required,
             },
         },
     },
@@ -144,7 +152,18 @@ export default {
         async register() {
             // логика регистрации
             try {
-                await this.authRequest('auth/users', this.form);
+                const user = await this.authRequest('auth/users', this.form);
+
+                if (user) {
+                    this.appUserData.user = user.id;
+
+                    try {
+                        await this.authRequest('appusers/new', this.appUserData);
+                    } catch (e) {
+                        console.error('AN API ERROR FOR APPUSER CREATE', e);
+                        this.err = e;
+                    }
+                }
 
                 // редиректим, если нет ошибки
                 this.$router.push('/auth/signin');
