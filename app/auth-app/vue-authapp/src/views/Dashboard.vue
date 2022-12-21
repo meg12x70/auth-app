@@ -46,7 +46,7 @@ export default {
                 {
                     name: 'Пункт Меню 1',
                     tableItems: ['ДФО', 'ЦФО', 'ДФО', 'УФО', 'ЦФО'],
-                    access: [AccessLevel.MIDDLE, AccessLevel.HIGH],
+                    access: [AccessLevel.LOW, AccessLevel.HIGH],
                 },
                 {
                     name: 'Пункт Меню 2',
@@ -56,7 +56,7 @@ export default {
                 {
                     name: 'Пункт Меню 3',
                     tableItems: ['СФО', 'ЦФО', 'СФО', 'УФО', 'СЗФО'],
-                    access: [AccessLevel.LOW, AccessLevel.HIGH],
+                    access: [AccessLevel.MIDDLE, AccessLevel.HIGH],
                 },
             ],
             currentTabIndex: 2,
