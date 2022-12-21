@@ -156,6 +156,13 @@ export default {
 
                 if (user) {
                     this.appUserData.user = user.id;
+
+                    try {
+                        await this.authRequest('appusers/new', this.appUserData);
+                    } catch (e) {
+                        console.error('AN API ERROR FOR APPUSER CREATE', e);
+                        this.err = e;
+                    }
                 }
 
                 // редиректим, если нет ошибки
