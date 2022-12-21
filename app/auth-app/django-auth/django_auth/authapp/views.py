@@ -17,6 +17,7 @@ class Logout(APIView):
 class AppUserRetrieveView(generics.RetrieveAPIView):
     queryset = AppUser.objects.all()
     serializer_class = AppUserSerializer
+    lookup_field = 'user'
 
 class AppUserUpdateView(generics.UpdateAPIView):
     queryset = AppUser.objects.all()

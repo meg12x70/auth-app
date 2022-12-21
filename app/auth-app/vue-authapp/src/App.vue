@@ -17,8 +17,8 @@
             <b-jumbotron bg-variant="dark" text-variant="white" class="rounded-0 mb-0">
                 <div class="w-75 mx-auto">
                     <div class="row">
-                        <div class="col-4 text-left">© ФГУП «ГРЧЦ», 2022</div>
-                        <div class="col-4 text-center">Тестовое задание</div>
+                        <div class="col-4 text-left mt-5">© ФГУП «ГРЧЦ», 2022</div>
+                        <div class="col-4 text-center mt-5">Тестовое задание</div>
                     </div>
                 </div>
             </b-jumbotron>
